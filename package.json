@@ -1,0 +1,16 @@
+{
+  "name": "fantasy-baseball-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Huan-Ting Chen <dingyiyi0226@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
