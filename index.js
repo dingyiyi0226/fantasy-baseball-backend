@@ -79,7 +79,7 @@ app.get('/test', (req, res) => {
   res.status(200).send('hello');
 });
 
-
-app.listen(4000, () => {
-  console.log('Server is up on port 4000');
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
