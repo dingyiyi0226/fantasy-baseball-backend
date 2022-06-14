@@ -6,8 +6,7 @@ require('dotenv').config()
 
 const TOKEN_ENDPOINT = 'https://api.login.yahoo.com/oauth2/get_token';
 const AUTH_HEADER = btoa(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
-// const REDIRECT_URI = 'https://dingyiyi0226.github.io/fantasy-baseball/home';
-const REDIRECT_URI = 'https://localhost:3000/fantasy-baseball/home';
+const REDIRECT_URI = process.env.REDIRECT_URI;
 
 
 const app = express();
