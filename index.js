@@ -1,10 +1,12 @@
 const axios = require('axios');
 const cors = require('cors');
 const express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 require('dotenv').config()
 
 
 const TOKEN_ENDPOINT = 'https://api.login.yahoo.com/oauth2/get_token';
+const API_ENDPOINT = 'https://fantasysports.yahooapis.com/fantasy/v2';
 const AUTH_HEADER = btoa(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
@@ -13,6 +15,17 @@ const app = express();
 app.use(cors({
   origin:['https://localhost:3000', 'https://dingyiyi0226.github.io']
 }));
+
+// api proxy
+app.use('/api',
+  createProxyMiddleware({
+    target: API_ENDPOINT,
+    changeOrigin: true,
+    pathRewrite: function (path, req) {  // tmp
+      return path.replace('/api', '');
+    }
+  })
+);
 
 // authorization code -> access token
 app.get('/token', (req, res) => {
