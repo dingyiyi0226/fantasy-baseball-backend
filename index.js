@@ -6,16 +6,18 @@ require('dotenv').config()
 
 const TOKEN_ENDPOINT = 'https://api.login.yahoo.com/oauth2/get_token';
 const AUTH_HEADER = btoa(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
-const REDIRECT_URI = 'oob';
+// const REDIRECT_URI = 'https://dingyiyi0226.github.io/fantasy-baseball/home';
+const REDIRECT_URI = 'https://localhost:3000/fantasy-baseball/home';
 
 
 const app = express();
 app.use(cors({
-  origin:['http://localhost:3000', 'https://dingyiyi0226.github.io']
+  origin:['https://localhost:3000', 'https://dingyiyi0226.github.io']
 }));
 
 // authorization code -> access token
 app.get('/token', (req, res) => {
+  console.log('get token');
   const authCode = req.query.code;
   const requestBody = {
     redirect_uri: REDIRECT_URI,
@@ -36,6 +38,7 @@ app.get('/token', (req, res) => {
     res.status(200).send(response.data);
   }).catch(error => {
     console.error('Error', error.config);
+    console.error(error.response.data);
     if (error.response) {
       res.status(error.response.status).send(error.response.data);
     }
@@ -44,6 +47,7 @@ app.get('/token', (req, res) => {
 
 // refresh token -> new access token
 app.get('/refresh', (req, res) => {
+  console.log('refresh token');
   const refresh_token = req.query.refresh_token;
   const requestBody = {
     redirect_uri: REDIRECT_URI,
@@ -64,6 +68,7 @@ app.get('/refresh', (req, res) => {
     res.status(200).send(response.data);
   }).catch(error => {
     console.error('Error', error.config);
+    console.error(error.response.data);
     if (error.response) {
       res.status(error.response.status).send(error.response.data);
     }
