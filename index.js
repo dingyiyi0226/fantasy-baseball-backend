@@ -9,11 +9,11 @@ const TOKEN_ENDPOINT = 'https://api.login.yahoo.com/oauth2/get_token';
 const API_ENDPOINT = 'https://fantasysports.yahooapis.com/fantasy/v2';
 const AUTH_HEADER = btoa(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
 const REDIRECT_URI = process.env.REDIRECT_URI;
-
+const ORIGIN_WHITELIST = process.env.ORIGIN_WHITELIST;
 
 const app = express();
 app.use(cors({
-  origin:['https://localhost:3000', 'https://dingyiyi0226.github.io']
+  origin:[ORIGIN_WHITELIST,]
 }));
 
 // api proxy
