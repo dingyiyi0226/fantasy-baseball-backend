@@ -2,6 +2,8 @@ const axios = require('axios');
 const cors = require('cors');
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const fs = require("fs");
+const https = require("https");
 require('dotenv').config()
 
 
@@ -92,6 +94,13 @@ app.get('/test', (req, res) => {
 });
 
 const port = process.env.PORT || 4000;
-app.listen(port, () => {
+
+const cert = {
+  key: fs.readFileSync("./cert/localhost-key.pem"),
+  cert: fs.readFileSync("./cert/localhost.pem"),
+};
+
+const server = https.createServer(cert, app);
+server.listen(port, () => {
   console.log(`Server is up on port ${port}`);
 });
