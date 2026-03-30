@@ -20,19 +20,14 @@ The backend server is for two purposes:
    - API Permissions: Fantasy Sports, Read/Write
 3. Copy the **Client ID** and **Client Secret**
 
-### Deploy the backend
-
-You can deploy the backend to any PaaS (e.g. Render, Fly.io) or directly run on computer
-
-
-#### Run on computer
+### Run locally
 
 1. Clone this repo
 
 2. Install dependencies
 
    ```
-   yarn  // or `npm install`
+   yarn
    ```
 
 3. Create `.env` file under the root of this repo
@@ -40,41 +35,17 @@ You can deploy the backend to any PaaS (e.g. Render, Fly.io) or directly run on 
    ```
    CLIENT_ID=<YOUR_CLIENT_ID>
    CLIENT_SECRET=<YOUR_CLIENT_SECRET>
-   REDIRECT_URI=<YOUR_FRONTEND_ORIGIN>/home  # For example, https://dingyiyi0226.github.io/fantasy-baseball/home, https://localhost:3000/fantasy-baseball/home
-   ORIGIN_WHITELIST=<YOUR_FRONTEND_ORIGIN>   # For example, https://dingyiyi0226.github.io, https://localhost:3000
+   REDIRECT_URI=<YOUR_FRONTEND_ORIGIN>/home
+   ORIGIN_WHITELIST=<YOUR_FRONTEND_ORIGIN>
    ```
 
-3. Start the server
+4. Start the server
 
    ```
-   yarn start  // or `npm run start`
+   yarn start
    ```
 
-4. The backend service domain is `https://localhost:4000` (or `http://localhost:4000` if `cert/` is not set up)
-
-
-#### Deploy on Render (free)
-
-1. Fork this repo on GitHub
-2. Sign up at [render.com](https://render.com) and create a new **Web Service**
-3. Connect your GitHub repo and select the forked repo
-4. Configure the service:
-
-   - **Runtime**: `Node`
-   - **Build Command**: `yarn install`
-   - **Start Command**: `yarn start`
-   - **Instance Type**: `Free`
-
-5. Under **Environment**, add the following variables:
-
-   - `CLIENT_ID`: `<YOUR_CLIENT_ID>`
-   - `CLIENT_SECRET`: `<YOUR_CLIENT_SECRET>`
-   - `ORIGIN_WHITELIST`: `<YOUR_FRONTEND_ORIGIN>` (For example, `https://dingyiyi0226.github.io`)
-   - `REDIRECT_URI`: `<YOUR_FRONTEND>/home` (For example, `https://dingyiyi0226.github.io/fantasy-baseball/home`)
-
-6. Your backend service domain will be `https://<app_name>.onrender.com`
-
-> **Note**: Free tier instances spin down after 15 minutes of inactivity (~30s cold start on next request).
+The server runs on `https://localhost:4000` if `cert/` is set up, otherwise `http://localhost:4000`.
 
 
 
