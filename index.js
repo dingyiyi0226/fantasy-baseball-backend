@@ -31,7 +31,7 @@ app.use('/api',
 
 // authorization code -> access token
 app.get('/token', (req, res) => {
-  console.log('get token');
+  if (process.env.NODE_ENV !== 'production') console.log('get token');
   const authCode = req.query.code;
   const requestBody = {
     redirect_uri: REDIRECT_URI,
@@ -48,7 +48,7 @@ app.get('/token', (req, res) => {
       'Content-Type':'application/x-www-form-urlencoded'
     },
   }).then(response => {
-    console.log('Response', response.data);
+    if (process.env.NODE_ENV !== 'production') console.log('Response', response.data);
     res.status(200).send(response.data);
   }).catch(error => {
     console.error('Error', error.config);
@@ -61,7 +61,7 @@ app.get('/token', (req, res) => {
 
 // refresh token -> new access token
 app.get('/refresh', (req, res) => {
-  console.log('refresh token');
+  if (process.env.NODE_ENV !== 'production') console.log('refresh token');
   const refresh_token = req.query.refresh_token;
   const requestBody = {
     redirect_uri: REDIRECT_URI,
@@ -78,7 +78,7 @@ app.get('/refresh', (req, res) => {
       'Content-Type':'application/x-www-form-urlencoded'
     }
   }).then(response => {
-    console.log('Response', response.data);
+    if (process.env.NODE_ENV !== 'production') console.log('Response', response.data);
     res.status(200).send(response.data);
   }).catch(error => {
     console.error('Error', error.config);
