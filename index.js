@@ -95,12 +95,16 @@ app.get('/test', (req, res) => {
 
 const port = process.env.PORT || 4000;
 
-const cert = {
-  key: fs.readFileSync("./cert/localhost-key.pem"),
-  cert: fs.readFileSync("./cert/localhost.pem"),
-};
-
-const server = https.createServer(cert, app);
-server.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
-});
+if (fs.existsSync("./cert/localhost-key.pem") && fs.existsSync("./cert/localhost.pem")) {
+  const cert = {
+    key: fs.readFileSync("./cert/localhost-key.pem"),
+    cert: fs.readFileSync("./cert/localhost.pem"),
+  };
+  https.createServer(cert, app).listen(port, () => {
+    console.log(`HTTPS server is up on port ${port}`);
+  });
+} else {
+  app.listen(port, () => {
+    console.log(`HTTP server is up on port ${port}`);
+  });
+}
