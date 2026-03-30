@@ -15,7 +15,7 @@ The backend server is for two purposes:
    - Application Name: fantasy-baseball (not important)  
    - Description: fantasy-baseball (not important)  
    - Homepage URL: https://dingyiyi0226.github.io (not important)  
-   - Redirect URI: `<YOUR_FRONTEND>/home` (For example, https://dingyiyi0226.github.io/fantasy-baseball/home)  
+   - Redirect URI: `<YOUR_FRONTEND>/redirect` (For example, https://dingyiyi0226.github.io/fantasy-baseball/redirect)
    - OAuth Client Type: Confidential Client
    - API Permissions: Fantasy Sports, Read/Write
 3. Copy the **Client ID** and **Client Secret**
@@ -35,7 +35,7 @@ The backend server is for two purposes:
    ```
    CLIENT_ID=<YOUR_CLIENT_ID>
    CLIENT_SECRET=<YOUR_CLIENT_SECRET>
-   REDIRECT_URI=<YOUR_FRONTEND_ORIGIN>/home
+   REDIRECT_URI=<YOUR_FRONTEND_ORIGIN>/redirect
    ORIGIN_WHITELIST=<YOUR_FRONTEND_ORIGIN>
    ```
 
